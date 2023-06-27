@@ -15,13 +15,13 @@ module.exports = {
   async getSingleThought(req, res) {
     try {
       const thought = await Thought.findOne({
-        _id: res.params.thoughtId,
+        _id: req.params.thoughtId,
       }).select("-__v");
 
       if (!thought) {
         return res.status(404).json({ message: "No thought with that ID" });
       }
-      res.json(course);
+      res.json(thought);
     } catch (err) {
       res.status(500).json(err);
     }
