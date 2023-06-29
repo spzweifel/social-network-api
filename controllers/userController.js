@@ -4,7 +4,7 @@ module.exports = {
   async getUser(req, res) {
     try {
         const users = await User.find({});
-        res.json(user);
+        res.json(users);
     }catch (err) {
         res.status(500).json(err)
     }
@@ -56,6 +56,8 @@ module.exports = {
         if (!user) {
             return res.status(404).json({ message: "No User find with this ID!" })
         }
+
+        res.json({ message: "User deleted"});
     } catch (err) {
         res.status(500).json(err)
     }

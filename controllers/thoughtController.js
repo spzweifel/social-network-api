@@ -23,11 +23,12 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+  //possible issue here. Can't find any users
   async createThought(req, res) {
     try {
       const thoughtData = await Thought.create(req.body)
       const userData = await User.findOneAndUpdate(
-        { _id: body.userId },
+        { _id: req.body.userId },
         { $push: { thoughts: thoughtData._id } },
         { new: true }
       );
